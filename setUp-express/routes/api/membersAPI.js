@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
     const newMember = {
         id: uuid.v4(),
         name: req.body.name,
-        email: req.body.name,
+        email: req.body.email,
         status: 'active'
     }
 
@@ -32,9 +32,9 @@ router.post('/', (req, res) => {
         return res.status(400).json({ msg: 'Please include name and email' })
     }
 
-    members.save(newMember);
     members.push(newMember);
-    res.json(members)
+    // res.json(members)
+    res.redirect('/')
 });
 
 
