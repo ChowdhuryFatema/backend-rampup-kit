@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const { engine } = require('express-handlebars');
 const app = express();
+const members = require('./members');
 
 // const logger = require('./middleware/logger')
 
@@ -24,7 +25,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 
 // Homepage Route
-app.get('/', (req, res) => res.render('index'))
+app.get('/', (req, res) => res.render('index', {
+    title: 'Member App',
+    members
+}))
 
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
